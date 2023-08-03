@@ -11,6 +11,13 @@ export default defineNuxtConfig({
         { charset: 'utf-16' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { hid: 'description', name: 'description', content: '' },
+        { name: 'color-scheme', content: 'light dark' },
+      ],
+      link: [
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600&display=swap',
+        },
       ],
     },
   },
