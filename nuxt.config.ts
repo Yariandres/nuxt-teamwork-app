@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   css: ['~/assets/scss/main.scss'],
   app: {
     head: {
+      htmlAttrs: { lang: 'en' },
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
       title: "Yari's Teamwork Test App",
@@ -11,7 +12,7 @@ export default defineNuxtConfig({
         { charset: 'utf-16' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { hid: 'description', name: 'description', content: '' },
-        { name: 'color-scheme', content: 'light dark' },
+        { name: 'color-scheme', content: 'light' },
       ],
       link: [
         {
