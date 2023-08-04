@@ -59,17 +59,12 @@ onErrorCaptured(() => {
   <Suspense>
     <template #default>
       <section :class="$style['section']">
-        <div :class="$style['placeholder']">
-          <img
-            src="~/assets/img/image.png"
-            alt="mockup"
-            loading="lazy"
-            width="650"
-            height="540"
-          />
+        <div :class="$style['section__placeholder']">
+          <img src="~/assets/img/image.png" alt="mockup" loading="lazy" />
         </div>
-        <div :class="$style['wrapper']">
-          <div :class="$style['section-description']">
+
+        <div :class="$style['section__box']">
+          <div :class="$style['section__description']">
             <h3 :class="$style['section__name']">{{ data[0].tag }}</h3>
             <h1 :class="$style['section__title']">
               {{ data[0].title }}
@@ -81,12 +76,13 @@ onErrorCaptured(() => {
               v-for="(item, index) in data[0].items"
               :key="index"
               :item="item"
+              :index="index"
             />
           </div>
         </div>
       </section>
     </template>
-    <template #fallback> Loading... </template>
+    <template #fallback>Loading... </template>
   </Suspense>
 </template>
 
@@ -94,20 +90,46 @@ onErrorCaptured(() => {
 .section {
   display: flex;
   gap: 150px;
-  height: 100dvh;
   margin-block-start: 81px;
 
-  .placeholder {
-    margin-inline-start: 91px;
+  @media only screen and (min-width: 768px) and (max-width: 1023px) {
+    flex-direction: column;
   }
 
-  .wrapper {
+  &__placeholder {
+    margin-inline-start: 91px;
+    @media only screen and (min-width: 768px) and (max-width: 1023px) {
+      display: none;
+    }
+
+    img {
+      @media only screen and (min-width: 1024px) {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    @media only screen and (max-width: 767px) {
+      display: none;
+    }
+  }
+
+  &__box {
     display: flex;
     flex-direction: column;
     gap: 34px;
-    max-width: 400px;
+    padding-inline-end: 116px;
+    width: 400px;
+    @media only screen and (max-width: 767px) {
+      padding-inline: 28px;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1023px) {
+      padding-inline: 28px;
+    }
   }
-  .section-description {
+
+  &__description {
     display: flex;
     flex-direction: column;
     gap: 9px;

@@ -1,14 +1,25 @@
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
   item: { title: string; text: string };
+  index: number;
 }>();
 
 const isOpen = ref<boolean>(false);
+
+onMounted(() => {
+  if (props.index === 0) {
+    isOpen.value = true;
+  }
+});
+
+const handleIsOpen = () => {
+  isOpen.value = !isOpen.value;
+};
 </script>
 
 <template>
   <div :class="$style['accordion']">
-    <div :class="$style['accordion-top']" @click="isOpen = !isOpen">
+    <div :class="$style['accordion-top']" @click="handleIsOpen">
       <h3
         :class="{
           [$style['accordion-title']]: true,
@@ -26,7 +37,9 @@ const isOpen = ref<boolean>(false);
 
     <elements-accordion-content>
       <template #content>
-        <p v-if="isOpen" :class="$style['accordion-text']">{{ item.text }}</p>
+        <p v-if="isOpen" :class="$style['accordion-text']">
+          {{ item.text }}
+        </p>
       </template>
     </elements-accordion-content>
   </div>
@@ -38,16 +51,17 @@ const isOpen = ref<boolean>(false);
   flex-direction: column;
   align-self: stretch;
   border-radius: 4px;
+  background: #eaeef4;
+  padding-inline: 18px;
+  max-width: 400px;
 
   .accordion-top {
     display: flex;
     justify-content: space-between;
     cursor: pointer;
-    background: #eaeef4;
     padding-inline: 18px;
     padding-block-start: 18px;
     padding-block-end: 18px;
-    min-width: 400px;
   }
 
   .accordion-text {
@@ -58,10 +72,8 @@ const isOpen = ref<boolean>(false);
     font-weight: 400;
     line-height: 26px;
     padding-block-start: 15px;
-    background: #eaeef4;
-    padding-inline: 18px;
     padding-block-end: 38px;
-    width: 400px;
+    max-width: 400px;
   }
 
   .accordion-title {
