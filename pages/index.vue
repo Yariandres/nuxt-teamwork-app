@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
+// TODO: to be removed and fetched
 interface AccordionItems {
   text: string;
   image: string;
@@ -12,7 +13,7 @@ interface Data {
   title: string;
   items: AccordionItems[];
 }
-
+// TODO: to be removed and fetched
 const data = ref<Data[]>([
   {
     tag: 'PLAN',
@@ -45,30 +46,42 @@ const data = ref<Data[]>([
     ],
   },
 ]);
+
+const errMsg = ref<string | null>(null);
+
+onErrorCaptured(() => {
+  errMsg.value = 'Something went wrong';
+});
 </script>
 
 <template>
-  <section :class="$style['section']">
-    <div>
-      <img src="~/assets/img/image.png" alt="mockup" />
-    </div>
-    <div :class="$style['wrapper']">
-      <div :class="$style['section-description']">
-        <h3 :class="$style['section__name']">{{ data[0].tag }}</h3>
-        <h1 :class="$style['section__title']">
-          {{ data[0].title }}
-        </h1>
-      </div>
+  <div v-if="errMsg">{{ errMsg }}</div>
+  <Suspense>
+    <template #default>
+      <section :class="$style['section']">
+        <div>
+          <img src="~/assets/img/image.png" alt="mockup" />
+        </div>
+        <div :class="$style['wrapper']">
+          <div :class="$style['section-description']">
+            <h3 :class="$style['section__name']">{{ data[0].tag }}</h3>
+            <h1 :class="$style['section__title']">
+              {{ data[0].title }}
+            </h1>
+          </div>
 
-      <div :class="$style['accordion-container']">
-        <elements-accordion
-          v-for="(item, index) in data[0].items"
-          :key="index"
-          :item="item"
-        />
-      </div>
-    </div>
-  </section>
+          <div :class="$style['accordion-container']">
+            <elements-accordion
+              v-for="(item, index) in data[0].items"
+              :key="index"
+              :item="item"
+            />
+          </div>
+        </div>
+      </section>
+    </template>
+    <template #fallback> Loading... </template>
+  </Suspense>
 </template>
 
 <style lang="scss" module>
