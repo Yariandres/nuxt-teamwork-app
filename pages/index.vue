@@ -59,8 +59,14 @@ onErrorCaptured(() => {
   <Suspense>
     <template #default>
       <section :class="$style['section']">
-        <div>
-          <img src="~/assets/img/image.png" alt="mockup" />
+        <div :class="$style['placeholder']">
+          <img
+            src="~/assets/img/image.png"
+            alt="mockup"
+            loading="lazy"
+            width="650"
+            height="540"
+          />
         </div>
         <div :class="$style['wrapper']">
           <div :class="$style['section-description']">
@@ -86,10 +92,20 @@ onErrorCaptured(() => {
 
 <style lang="scss" module>
 .section {
+  display: flex;
+  gap: 150px;
+  height: 100dvh;
+  margin-block-start: 81px;
+
+  .placeholder {
+    margin-inline-start: 91px;
+  }
+
   .wrapper {
     display: flex;
     flex-direction: column;
     gap: 34px;
+    max-width: 400px;
   }
   .section-description {
     display: flex;

@@ -9,10 +9,19 @@ const isOpen = ref<boolean>(false);
 <template>
   <div :class="$style['accordion']">
     <div :class="$style['accordion-top']" @click="isOpen = !isOpen">
-      <h3 :class="[$style['accordion-title'], $style['active']]">
+      <h3
+        :class="{
+          [$style['accordion-title']]: true,
+          [$style['active']]: isOpen,
+        }"
+      >
         {{ item.title }}
       </h3>
-      <img src="~/assets/svg/icon.svg" alt="accordion triangle" />
+      <img
+        src="~/assets/svg/icon.svg"
+        alt="accordion triangle"
+        loading="lazy"
+      />
     </div>
 
     <elements-accordion-content>
@@ -27,18 +36,18 @@ const isOpen = ref<boolean>(false);
 .accordion {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  padding-inline: 18px;
-  padding-block-start: 18px;
-  padding-block-end: 18px;
   align-self: stretch;
   border-radius: 4px;
-  background: #eaeef4;
 
   .accordion-top {
     display: flex;
     justify-content: space-between;
     cursor: pointer;
+    background: #eaeef4;
+    padding-inline: 18px;
+    padding-block-start: 18px;
+    padding-block-end: 18px;
+    min-width: 400px;
   }
 
   .accordion-text {
@@ -48,7 +57,11 @@ const isOpen = ref<boolean>(false);
     font-style: normal;
     font-weight: 400;
     line-height: 26px;
+    padding-block-start: 15px;
+    background: #eaeef4;
+    padding-inline: 18px;
     padding-block-end: 38px;
+    width: 400px;
   }
 
   .accordion-title {
