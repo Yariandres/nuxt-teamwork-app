@@ -40,10 +40,17 @@ const handleIsOpen = () => {
     </div>
 
     <elements-accordion-content>
-      <template #content>
-        <p v-if="isOpen" :class="$style['accordion-text']">
+      <template v-if="isOpen" #content>
+        <p :class="$style['accordion-text']">
           {{ item.text }}
         </p>
+
+        <img
+          :class="$style['accordion-image']"
+          v-if="index === 0"
+          src="~/assets/img/imagesm.png"
+          alt="Accordion plan"
+        />
       </template>
     </elements-accordion-content>
   </div>
@@ -99,6 +106,19 @@ const handleIsOpen = () => {
     padding-block-start: 15px;
     padding-block-end: 38px;
     max-width: 400px;
+
+    @include responsive(mobile) {
+      padding-block-end: 15px;
+    }
+  }
+
+  .accordion-image {
+    display: none;
+
+    @include responsive(mobile) {
+      display: block;
+      padding-block-end: 38px;
+    }
   }
 }
 </style>
