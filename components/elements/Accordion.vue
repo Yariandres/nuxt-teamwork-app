@@ -19,18 +19,22 @@ const handleIsOpen = () => {
 
 <template>
   <div :class="$style['accordion']">
-    <div :class="$style['accordion-top']" @click="handleIsOpen">
+    <div :class="$style['accordion__top']" @click="handleIsOpen">
       <h3
         :class="{
-          [$style['accordion-title']]: true,
+          [$style['accordion__top--title']]: true,
           [$style['active']]: isOpen,
         }"
       >
         {{ item.title }}
       </h3>
       <img
+        :class="{
+          [$style['accordion__top--trigger']]: true,
+          [$style['rotate']]: isOpen,
+        }"
         src="~/assets/svg/icon.svg"
-        alt="accordion triangle"
+        alt="Accordion triangle icon"
         loading="lazy"
       />
     </div>
@@ -46,6 +50,8 @@ const handleIsOpen = () => {
 </template>
 
 <style lang="scss" module>
+@import '~/assets/scss/mixins';
+
 .accordion {
   display: flex;
   flex-direction: column;
@@ -55,13 +61,32 @@ const handleIsOpen = () => {
   padding-inline: 18px;
   max-width: 400px;
 
-  .accordion-top {
+  &__top {
     display: flex;
     justify-content: space-between;
     cursor: pointer;
     padding-inline: 18px;
     padding-block-start: 18px;
     padding-block-end: 18px;
+
+    &--title {
+      font-size: 21px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 120%;
+    }
+
+    &--title.active {
+      color: #4461d7;
+    }
+
+    &--trigger {
+      @include rotate-triangle(-180deg);
+
+      &.rotate {
+        @include rotate-triangle(0deg, 0.3s);
+      }
+    }
   }
 
   .accordion-text {
@@ -74,16 +99,6 @@ const handleIsOpen = () => {
     padding-block-start: 15px;
     padding-block-end: 38px;
     max-width: 400px;
-  }
-
-  .accordion-title {
-    font-size: 21px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 120%;
-  }
-  .accordion-title.active {
-    color: #4461d7;
   }
 }
 </style>

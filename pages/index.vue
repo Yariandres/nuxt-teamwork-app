@@ -60,6 +60,7 @@ onErrorCaptured(() => {
     <template #default>
       <section :class="$style['section']">
         <div :class="$style['section__placeholder']">
+          <!-- TODO: use nuxt-image for optimazation? -->
           <img src="~/assets/img/image.png" alt="mockup" loading="lazy" />
         </div>
 
@@ -98,6 +99,7 @@ onErrorCaptured(() => {
 
   &__placeholder {
     margin-inline-start: 91px;
+
     @media only screen and (min-width: 768px) and (max-width: 1023px) {
       display: none;
     }
@@ -120,6 +122,7 @@ onErrorCaptured(() => {
     gap: 34px;
     padding-inline-end: 116px;
     width: 400px;
+
     @media only screen and (max-width: 767px) {
       padding-inline: 28px;
     }

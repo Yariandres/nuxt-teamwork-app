@@ -1,0 +1,6 @@
+// Accordion icon rotate
+@mixin rotate-triangle($degrees, $duration: 0.3s) {
+  transform: rotate($degrees);
+  transform-origin: center;
+  transition: transform $duration ease-in-out;
+}
