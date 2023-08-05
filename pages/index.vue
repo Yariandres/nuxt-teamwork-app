@@ -88,13 +88,14 @@ onErrorCaptured(() => {
 </template>
 
 <style lang="scss" module>
+@import '~/assets/scss/mixins';
 .section {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   margin-block-start: 81px;
 
-  @media only screen and (min-width: 768px) and (max-width: 1240px) {
+  @include responsive(desktop) {
     flex-direction: column;
   }
 
@@ -103,7 +104,7 @@ onErrorCaptured(() => {
     height: auto;
     margin-inline-start: 91px;
 
-    @media only screen and (max-width: 767px) {
+    @include responsive(mobile) {
       display: none;
     }
   }
@@ -115,7 +116,7 @@ onErrorCaptured(() => {
     width: 400px;
     margin: 0 auto;
 
-    @media only screen and (max-width: 767px) {
+    @include responsive(mobile) {
       padding-inline: 0;
       margin: 0 auto;
     }

@@ -10,14 +10,14 @@
 @mixin responsive($desktop: true, $tablet: true, $mobile: true) {
   // Desktop
   @if $desktop {
-    @media (min-width: 100rem) {
+    @media only screen and (min-width: 768px) and (max-width: 1240px)  {
       @content;
     }
   }
 
   // Mobile
   @if $mobile {
-    @media (min-width: 30rem) {
+    @media only screen and (max-width: 767px) {
       @content;
     }
   }
