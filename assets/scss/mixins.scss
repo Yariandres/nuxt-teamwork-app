@@ -4,3 +4,21 @@
   transform-origin: center;
   transition: transform $duration ease-in-out;
 }
+
+// Todo: to refactor media queries in home page
+// Resposive breakpoints
+@mixin responsive($desktop: true, $tablet: true, $mobile: true) {
+  // Desktop
+  @if $desktop {
+    @media (min-width: 100rem) {
+      @content;
+    }
+  }
+
+  // Mobile
+  @if $mobile {
+    @media (min-width: 30rem) {
+      @content;
+    }
+  }
+}

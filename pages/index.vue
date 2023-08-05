@@ -60,7 +60,7 @@ onErrorCaptured(() => {
     <template #default>
       <section :class="$style['section']">
         <div :class="$style['section__placeholder']">
-          <!-- TODO: use nuxt-image for optimazation? -->
+          <!-- TODO: use nuxt-image for optimazation -->
           <img src="~/assets/img/image.png" alt="mockup" loading="lazy" />
         </div>
 
@@ -90,26 +90,18 @@ onErrorCaptured(() => {
 <style lang="scss" module>
 .section {
   display: flex;
-  gap: 150px;
+  justify-content: space-around;
+  flex-wrap: wrap;
   margin-block-start: 81px;
 
-  @media only screen and (min-width: 768px) and (max-width: 1023px) {
+  @media only screen and (min-width: 768px) and (max-width: 1240px) {
     flex-direction: column;
   }
 
   &__placeholder {
+    width: 650px;
+    height: auto;
     margin-inline-start: 91px;
-
-    @media only screen and (min-width: 768px) and (max-width: 1023px) {
-      display: none;
-    }
-
-    img {
-      @media only screen and (min-width: 1024px) {
-        width: 100%;
-        height: auto;
-      }
-    }
 
     @media only screen and (max-width: 767px) {
       display: none;
@@ -120,15 +112,12 @@ onErrorCaptured(() => {
     display: flex;
     flex-direction: column;
     gap: 34px;
-    padding-inline-end: 116px;
     width: 400px;
+    margin: 0 auto;
 
     @media only screen and (max-width: 767px) {
-      padding-inline: 28px;
-    }
-
-    @media only screen and (min-width: 768px) and (max-width: 1023px) {
-      padding-inline: 28px;
+      padding-inline: 0;
+      margin: 0 auto;
     }
   }
 
