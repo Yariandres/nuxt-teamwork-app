@@ -39,8 +39,8 @@ const handleIsOpen = () => {
       />
     </div>
 
-    <elements-accordion-content>
-      <template v-if="isOpen" #content>
+    <elements-accordion-content v-if="isOpen">
+      <template #content>
         <p :class="$style['accordion-text']">
           {{ item.text }}
         </p>
