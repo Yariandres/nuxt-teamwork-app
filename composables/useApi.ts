@@ -1,15 +1,4 @@
-// fetch end point data configuration
-interface AccordionItems {
-  text: string;
-  image: string;
-  title: string;
-}
-
-interface Data {
-  tag: string;
-  title: string;
-  items: AccordionItems[];
-}
+import { Data } from '~/types/accordionContent';
 
 export default () => {
   const config = useRuntimeConfig();
