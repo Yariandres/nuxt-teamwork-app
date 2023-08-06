@@ -22,4 +22,9 @@ export default defineNuxtConfig({
       ],
     },
   },
+  runtimeConfig: {
+    public: {
+      url: process.env.URI,
+    },
+  },
 });
