@@ -19,36 +19,36 @@ const handleIsOpen = () => {
 
 <template>
   <div :class="$style['accordion']">
-    <div :class="$style['accordion__top']" @click="handleIsOpen">
-      <h3
-        :class="{
-          [$style['accordion__top--title']]: true,
-          [$style['active']]: isOpen,
-        }"
-      >
-        {{ item.title }}
-      </h3>
-      <img
-        :class="{
-          [$style['accordion__top--trigger']]: true,
-          [$style['rotate']]: isOpen,
-        }"
-        src="~/assets/svg/icon.svg"
-        alt="Accordion triangle icon"
-        loading="lazy"
-      />
-    </div>
+    <elements-accordion-header :handleIsOpen="handleIsOpen">
+      <template #header>
+        <h2
+          :class="{
+            [$style['accordion__title']]: true,
+            [$style['active']]: isOpen,
+          }"
+        >
+          {{ item.title }}
+        </h2>
+        <elements-accordion-icon
+          :class="{
+            [$style['accordion__trigger']]: true,
+            [$style['rotate']]: isOpen,
+          }"
+        />
+      </template>
+    </elements-accordion-header>
 
     <elements-accordion-content v-if="isOpen">
       <template #content>
-        <p :class="$style['accordion-text']">
+        <p :class="$style['accordion__text']">
           {{ item.text }}
         </p>
-
-        <img
-          :class="$style['accordion-image']"
+        <nuxt-img
           v-if="index === 0"
-          src="~/assets/img/imagesm.png"
+          src="/image.png"
+          :class="$style['accordion__image']"
+          width="126"
+          height="101"
           alt="Accordion plan"
         />
       </template>
@@ -68,35 +68,25 @@ const handleIsOpen = () => {
   padding-inline: 18px;
   max-width: 400px;
 
-  &__top {
-    display: flex;
-    justify-content: space-between;
-    cursor: pointer;
-    padding-inline: 18px;
-    padding-block-start: 18px;
-    padding-block-end: 18px;
-
-    &--title {
-      font-size: 21px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: 120%;
-    }
-
-    &--title.active {
-      color: #4461d7;
-    }
-
-    &--trigger {
-      @include rotate-triangle(-180deg);
-
-      &.rotate {
-        @include rotate-triangle(0deg, 0.3s);
-      }
-    }
+  &__title {
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
   }
 
-  .accordion-text {
+  &__title.active {
+    color: #4461d7;
+  }
+
+  &__trigger {
+    @include rotate-triangle(-180deg);
+
+    &.rotate {
+      @include rotate-triangle(0deg, 0.3s);
+    }
+  }
+  &__text {
     color: #494e6a;
     font-family: Work Sans;
     font-size: 16px;
@@ -112,7 +102,8 @@ const handleIsOpen = () => {
     }
   }
 
-  .accordion-image {
+  &__image {
+    margin: 0 auto;
     display: none;
 
     @include responsive(mobile) {

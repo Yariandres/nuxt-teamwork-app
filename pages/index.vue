@@ -11,13 +11,17 @@ const { data: content } = await useApi().getAllData();
 </script>
 
 <template>
-  <div v-if="errMsg">{{ errMsg }}</div>
+  <p aria-hidden="true" v-if="errMsg">{{ errMsg }}</p>
   <Suspense>
     <template #default>
       <section :class="$style['section']">
         <div :class="$style['section__placeholder']">
-          <!-- TODO: use nuxt-image for optimazation?-->
-          <img src="~/assets/img/image.png" alt="mockup" loading="lazy" />
+          <img
+            src="~/assets/img/image.png"
+            alt="mockup"
+            width="650px"
+            height="540"
+          />
         </div>
 
         <div :class="$style['section__box']">
@@ -56,8 +60,6 @@ const { data: content } = await useApi().getAllData();
   }
 
   &__placeholder {
-    width: 650px;
-    height: auto;
     margin-inline-start: 91px;
 
     @include responsive(mobile) {
@@ -86,6 +88,7 @@ const { data: content } = await useApi().getAllData();
 
   &__name {
     color: #ff22b1;
+    background-color: transparent;
     font-family: Work Sans;
     font-size: 14px;
     font-style: normal;

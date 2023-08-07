@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  modules: ['@nuxt/image'],
   css: ['~/assets/scss/main.scss'],
   app: {
     head: {
@@ -11,7 +12,11 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-16' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { hid: 'description', name: 'description', content: '' },
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'A sample plan page with accordion',
+        },
         { name: 'color-scheme', content: 'light' },
       ],
       link: [
